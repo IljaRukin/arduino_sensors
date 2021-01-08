@@ -1,0 +1,49 @@
+###bluetooth hc-05###
+
+1 = TxD (Ausgang) Baud9600
+2 = RxD (Eingang) Baud9600
+11 = normalerweise high, reset bei low
+12 = Versorgung normal 3,3V 50mA (3..4,2V, kurzzeitig 250mA)
+13 = GND
+31 = LED 1, blinkt ständig
+32 = LED 2, Low bei Bereitschaft und High bei Verbindung.
+34 = beim Anschalten Low=Normalbetrieb (unbeschaltet = Low), High=Befehlsmodus Baud38400
+
+Befehle für den Slave Modus:
+    AT+ORGL Alle Einstellungen auf die Vorgabewerte zurück setzen
+    AT+PSWD=1234 Passwort ändern (Vorgabe 1234)
+    AT+NAME=HC-05 Name ändern (Vorgabe HC-05)
+    AT+UART=9600,0,0 Baudrate auf 4800 bis 1300000 ändern (Vorgabe 9600)
+    AT+CMODE=1 Erlaube Verbindung mit beliebigem Partner (Vorgabe)
+    AT+CMODE=0 Erlaube Verbindung nur mit einem bestimmten Partner (entweder dem letzten Bekannten oder mit AT+BIND festlegen)
+    AT+BIND=A854,B2,3FB035 Binde das Modul an den angegebenen Partner (Parameter ist die Adresse aber mit Komma statt Doppelpunkten)
+
+Weitere Befehle:
+    AT+ROLE? Master/Slave Modus abfragen
+    AT+ADDR? Eigene Adresse abfragen
+    AT+PSWD? Passwort abfragen
+    AT+NAME? Eigenen Namen abfragen
+    AT+CMODE? Verbindung-Modus abfragen
+    AT+RMAAD Aktuelle Verbindung und Parung beenden (falls vorhanden)
+
+Modul in den Master Modus versetzen und mit einem Slave verbinden:
+    AT+ORGL Alle Einstellungen auf die Vorgabewerte zurück setzen
+    AT+ROLE=1 Master Modus
+    AT+PSWD=1234 Stelle das gleiche Passwort ein, wie beim Slave
+    AT+RMAAD Aktuelle Parung beenden (falls vorhanden)
+    AT+CMODE=0 Erlaube Verbindung nur mit einem bestimmten Partner
+    AT+BIND=A854,B2,3FB035 Binde das Modul an den angegebenen Partner (Parameter ist die Adresse aber mit Komma statt Doppelpunkten)
+    AT+RESET Neustart, das Modul sucht nach dem Slave und versucht sich zu verbinden.
+    AT+LINK=A854,B2,3FB035 Verbinde mit dem angegebenen Slave
+
+Nach diesen Befehlen verbindet sich das Modul zukünftig automatisch mit dem Slave.
+Mit AT+ROLE=0 gefolgt von AT+RESET kommt man zurück in den Slave Modus.
+
+nach Slaves suchen:
+    AT+CMODE=1 Erlaube jeden Verbindungspartner
+    AT+INQM=0,5,9 Suche bis zu 5 Geräte in 9 Sekunden
+    AT+INIT Falls das Modul mit ERROR(17) antwortet: ignorieren und weiter machen
+    AT+INQ? Startet die Suche, liefert zum Beispiel die Adresse A854:B2:3FB035
+    AT+RNAME?A854,B2,3FB035 Zeigt den Namen eines erreichbaren Partners an
+
+Alle Befehle werden mit einem Zeilenumbruch (CRLF oder \r\n) abgeschlossen.
