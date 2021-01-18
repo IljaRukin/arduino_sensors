@@ -23,7 +23,7 @@ a = analogRead(7)   //vaule between 0 and 1023 (ADC)
 pinMode(7,OUTPUT); \
 digitalWrite(8,LOW/HIGH) \
 analogWrite(8,LOW/HIGH/#value#)   //value between 0 and 255 (PWM-Signal) \
-attach Interrupt(PIN,function,LOW/HIGH/CHANGE/FALLING/RISING)   //PINs: 0=D2; 1=D3
+attachInterrupt(PIN,function,LOW/HIGH/CHANGE/FALLING/RISING);   //PINs: 0=D2; 1=D3;
 
 
 
