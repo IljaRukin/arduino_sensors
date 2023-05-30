@@ -1,0 +1,15 @@
+// Panasonic TV remote commands:
+
+/*
+ * commands
+on-off - 3D
+vol up - 20
+vol down - 21
+silent - 32
+AV - 5
+TV - 30
+1,2,3,4,5,6,7,8,9,0 - 10-19
+prog up - 34
+prog down - 35
+ok - 49
+*/
