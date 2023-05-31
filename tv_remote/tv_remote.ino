@@ -28,9 +28,9 @@ void setup() {
 //    IrSender.begin();
 }
 
-uint16_t sAddress = 0x8;
+int sAddress = 0x8;
 int sCommand = 0;
-uint8_t sRepeats = 3;
+int sRepeats = 1;
 
 void loop() {
     //if(Serial.available() != 0) {
