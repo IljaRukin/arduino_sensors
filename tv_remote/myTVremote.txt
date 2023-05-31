@@ -1,7 +1,10 @@
 // Panasonic TV remote commands:
 
+int sAddress = 0x8;
+int sRepeats = 1;
+
 /*
- * commands
+ * int sCommand = 
 on-off - 3D
 vol up - 20
 vol down - 21
